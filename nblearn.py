@@ -4,11 +4,13 @@ import json
 def update_dict(dictionary, doc_class, doc):
     if doc_class not in dictionary:
         dictionary[doc_class] = {}
+        dictionary[doc_class]['NUM_WORDS'] = 0
         dictionary[doc_class]['NUM_DOCS'] = 1
     else:
         dictionary[doc_class]['NUM_DOCS'] += 1
 
     for word in doc:
+        dictionary[doc_class]['NUM_WORDS'] += 1
         if word not in dictionary[doc_class]:
             dictionary[doc_class][word] = 1
         else:
