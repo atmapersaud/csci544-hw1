@@ -1,20 +1,22 @@
 import sys
 import json
+import math
 
 def classify(dictionary, doc):
     classprobs = [compute_classprob(dictionary, key, doc) for key in dictionary]
-    #need to get argmax
+    return max(classprobs, key=lambda x: x[1])[0]
+    #return classprobs
 
 def compute_classprob(dictionary, docclass, doc):
     classdict = dictionary[docclass]
-    condprobs = [compute_wordprob(classdict,word) for word in doc]
-    return log(classdict['PRIOR']) + sum(condprobs)
+    condprobs = [compute_wordprob(classdict,word) for word in doc.split()]
+    return docclass, math.log(classdict['PRIOR']) + sum(condprobs)
 
 def compute_wordprob(classdict, word):
     if word in classdict:
-        log((classdict[word]+1)/classdict['N+k'])
+        return math.log((classdict[word]+1)/classdict['N+k'])
     else:
-        log(1/classdict['N+k'])
+        return math.log(1/classdict['N+k'])
 
 def compute_class_statistics(dictionary):
     num_doc_vec = [dictionary[key]['NUM_DOCS'] for key in dictionary]
