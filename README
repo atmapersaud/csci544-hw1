@@ -1,0 +1,13 @@
+for spam development set
+
+tps: 355
+fps: 17
+fns: 8
+tns: 983
+accu: 0.9816581071166545
+spamrecall: 0.977961432506887
+spamprecision: 0.9543010752688172
+spamf1: 0.9659863945578231
+hamrecall: 0.983
+hamprecision: 0.9919273461150353
+hamf1: 0.9874434957307886
