@@ -2,6 +2,7 @@ import os
 import string
 
 filenames = os.listdir('data/SENTIMENT_test')
+filenames.sort()
 outfile = open('sentiment_test.txt', 'w')
 
 remove_punctuation_map = dict((ord(char), None) for char in string.punctuation)

@@ -22,11 +22,16 @@ def compute_class_statistics(dictionary):
     num_doc_vec = [dictionary[key]['NUM_DOCS'] for key in dictionary]
     num_docs = sum(num_doc_vec)
 
+    totalvocab = 0
+
     for key in dictionary:
         classdict = dictionary[key]
         classdict['PRIOR'] = classdict['NUM_DOCS'] / num_docs
-        classdict['VOCAB'] = len(classdict)-3 # don't want to count NUM_DOCS, NUM_WORDS or PRIOR
-        classdict['N+k'] = classdict['NUM_WORDS']+classdict['VOCAB']
+        totalvocab += len(classdict)-3 # don't want to count NUM_DOCS, NUM_WORDS or PRIOR
+
+    for key in dictionary:
+        classdict = dictionary[key]
+        classdict['N+k'] = classdict['NUM_WORDS']+totalvocab+1 # the +1 is for the unknown word
 
 def main():
     modelfile = open(sys.argv[1])
