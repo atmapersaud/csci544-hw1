@@ -1,5 +1,9 @@
 ### Part I
 #### SPAM development set
+| class | recall | precision | f1    |
+|-------|--------|-----------|-------|
+| spam  | 0.975  | 0.959     | 0.967 |
+| ham   | 0.985  | 0.991     | 0.988 |
 * spamrecall: 0.9752066115702479
 * spamprecision: 0.959349593495935
 * spamf1: 0.9672131147540983
